@@ -10,7 +10,11 @@ import UIKit
 
 class MainViewController: UIViewController {
   
-  private var weather = [Weather]() {
+  private let mainView = MainView()
+  
+  var zipCode = String()
+  
+  private var weathers = [Daily]() {
     didSet {
       DispatchQueue.main.async {
         self.mainView.collectionView.reloadData()
@@ -18,25 +22,38 @@ class MainViewController: UIViewController {
     }
   }
   
-  private let mainView = MainView()
-  
   override func loadView() {
     view = mainView
   }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//      mainView.collectionView.delegate = self
       mainView.collectionView.dataSource = self
+      mainView.zipCodeSearchBar.delegate = self
       view.backgroundColor = .systemPink
+      
+      mainView.collectionView.register(UINib(nibName: "WeatherCell", bundle: nil), forCellWithReuseIdentifier: "weatherCell")
+      weatcherSearch(zipCode:"")
+      
     }
+  
+  func weatcherSearch(zipCode: String = "11691") {
+    WeatherAPIClient.fetchWeatcher { (result) in
+      switch result {
+      case .failure(let appError):
+        print("error: \(appError)")
+      case .success(let weather):
+        self.weathers = weather
+      }
+    }
+  }
 
 
 }
 
 extension MainViewController : UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    weather.count
+    weathers.count
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -44,6 +61,25 @@ extension MainViewController : UICollectionViewDataSource {
       fatalError("could not downcast to weather")
     }
     
+    let weather = weathers[indexPath.row]
+    
+    cell.configureCell(with: weather)
+    
+    
     return cell
+  }
+}
+
+
+extension MainViewController : UISearchBarDelegate {
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    searchBar.resignFirstResponder()
+    
+    guard let searchText = searchBar.text else {
+      print("missing zip code")
+      return
+    }
+    weatcherSearch(zipCode: searchText)
+    
   }
 }

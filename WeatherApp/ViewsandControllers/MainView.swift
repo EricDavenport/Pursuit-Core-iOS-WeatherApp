@@ -27,6 +27,13 @@ class MainView: UIView {
     collectionView.backgroundColor = .orange
     return collectionView
   }()
+  
+  public lazy var zipCodeSearchBar : UISearchBar = {
+    let searchBar = UISearchBar()
+    searchBar.backgroundColor = .brown
+    searchBar.placeholder = "enter zipcode"
+    return searchBar
+  }()
 
   override init(frame: CGRect) {
     super.init(frame: UIScreen.main.bounds)
@@ -41,6 +48,7 @@ class MainView: UIView {
   private func commonInit() {
     nameLabelSetUp()
     collectionViewSetup()
+    zipCodeSetup()
   }
 
   private func nameLabelSetUp() {
@@ -69,9 +77,18 @@ class MainView: UIView {
     ])
     
   }
-
-
   
-  
+  public func zipCodeSetup() {
+    addSubview(zipCodeSearchBar)
+    
+    zipCodeSearchBar.translatesAutoresizingMaskIntoConstraints = false
+    
+    NSLayoutConstraint.activate([
+      zipCodeSearchBar.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 15),
+      zipCodeSearchBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+      zipCodeSearchBar.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
+    ])
+  }
+
 
 }

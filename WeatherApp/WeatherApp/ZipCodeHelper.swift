@@ -7,6 +7,9 @@ enum LocationFetchingError: Error {
 }
 
 class ZipCodeHelper {
+  
+    //static let shared = ZipCodeHelper()
+  
     private init() {}
     static func getLatLong(fromZipCode zipCode: String, completionHandler: @escaping (Result<(lat: Double, long: Double), LocationFetchingError>) -> Void) {
         let geocoder = CLGeocoder()

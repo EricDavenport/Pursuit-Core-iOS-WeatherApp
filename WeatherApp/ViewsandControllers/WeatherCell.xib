@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="weatherCell" id="qM0-fQ-V5q">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="weatherCell" id="qM0-fQ-V5q" customClass="WeatherCell" customModule="WeatherApp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="1470" height="1355"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="fxb-hj-ouc">
@@ -32,6 +32,10 @@
             </collectionViewCellContentView>
             <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <size key="customSize" width="1470" height="1355"/>
+            <connections>
+                <outlet property="imageView" destination="9oU-U9-5mu" id="Q8K-u1-oTJ"/>
+                <outlet property="summaryLabel" destination="BRW-Lp-tvL" id="02V-XR-CsE"/>
+            </connections>
             <point key="canvasLocation" x="1115.9420289855072" y="379.35267857142856"/>
         </collectionViewCell>
     </objects>

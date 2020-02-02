@@ -37,7 +37,7 @@ struct Weather : Codable {
 struct Daily : Codable {
   let summary : String
   let icon : String
-  let data : WeatherData
+  //let data : WeatherData
 }
 
 struct WeatherData : Codable {

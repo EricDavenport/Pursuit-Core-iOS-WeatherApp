@@ -15,6 +15,13 @@ class MainViewController: UIViewController {
   var zipCode = String()
   var latitude = Double()
   var longitiude = Double()
+  var name = String() {
+    didSet {
+      DispatchQueue.main.async {
+        self.mainView.cityNameLabel.text = self.name
+      }
+    }
+  }
   
   private var weathers = [WeatherData]() {
     didSet {
@@ -35,20 +42,20 @@ class MainViewController: UIViewController {
       view.backgroundColor = .systemPink
       
       mainView.collectionView.register(UINib(nibName: "WeatherCell", bundle: nil), forCellWithReuseIdentifier: "weatherCell")
-      weatcherSearch(zipCode:"")
+      weatherSearch(zipCode:"")
       
     }
   
-  func weatcherSearch(zipCode: String = "11691") {
+  func weatherSearch(zipCode: String = "11003") {
     
-    ZipCodeHelper.getLatLong(fromZipCode: "11413") { (result) in
+    ZipCodeHelper.getLatLong(fromZipCode: zipCode) { (result) in
       switch result {
       case .failure(let appError):
         print("issue changing string to zip: \(appError)")
-      case .success(let lat, let long):
+      case .success(let lat, let long, let name):
         self.latitude = lat
         self.longitiude = long
-        
+        self.name = name
       }
     }
     
@@ -79,34 +86,13 @@ extension MainViewController : UICollectionViewDataSource {
     cell.backgroundColor = .white
     
     cell.configureCell(with: weather)
+//    cell.cityNameLabel.text = name
     
     
     return cell
   }
   
 }
-
-extension MainViewController : UICollectionViewDelegateFlowLayout {
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: 400, height: 420)
-  }
-  
-  
-  func collectionView(_ collectionView: UICollectionView,
-                      layout collectionViewLayout: UICollectionViewLayout,
-                      minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-      return 1.0
-  }
-
-  func collectionView(_ collectionView: UICollectionView, layout
-      collectionViewLayout: UICollectionViewLayout,
-                      minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-      return 1.0
-  }
-}
-
-
-
 
 extension MainViewController : UISearchBarDelegate {
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -116,7 +102,7 @@ extension MainViewController : UISearchBarDelegate {
       print("missing zip code")
       return
     }
-    weatcherSearch(zipCode: searchText)
+    weatherSearch(zipCode: searchText)
     
   }
 }

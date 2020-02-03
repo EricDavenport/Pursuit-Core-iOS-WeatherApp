@@ -15,9 +15,12 @@ class WeatherCell: UICollectionViewCell {
   
   @IBOutlet weak var imageView: UIImageView!
   
+  @IBOutlet weak var cityNameLabel: UILabel!
+  
   func configureCell(with weather: WeatherData) {
     imageView.image = UIImage(named: weather.icon)
-    summaryLabel.text = weather.summary
+    //summaryLabel.text = weather.summary
+    cityNameLabel.text = weather.icon.uppercased()
   }
   
 }

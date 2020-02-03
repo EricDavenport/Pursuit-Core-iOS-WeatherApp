@@ -22,9 +22,10 @@ class MainView: UIView {
   public lazy var collectionView : UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .horizontal
-    layout.itemSize = CGSize(width: 450, height: 450)
+    layout.itemSize = CGSize(width: bounds.size.width - 20, height: 350)
+    layout.minimumLineSpacing = 20
     let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-    collectionView.backgroundColor = .orange
+    collectionView.backgroundColor = .black
     return collectionView
   }()
   
@@ -99,7 +100,9 @@ class MainView: UIView {
 
   private func descriptionLabelSetup() {
     addSubview(infoLabel)
+    
     infoLabel.translatesAutoresizingMaskIntoConstraints = false
+    
     NSLayoutConstraint.activate([
       infoLabel.topAnchor.constraint(equalTo: zipCodeSearchBar.bottomAnchor, constant: 20),
       infoLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),

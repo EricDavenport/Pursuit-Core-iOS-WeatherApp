@@ -19,10 +19,10 @@
 		580E7D8223E4CA6500284966 /* FavsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580E7D8123E4CA6500284966 /* FavsView.swift */; };
 		580E7D8523E4D3E300284966 /* WeatherAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580E7D8423E4D3E300284966 /* WeatherAPIClient.swift */; };
 		580E7D8723E4D3EC00284966 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580E7D8623E4D3EC00284966 /* Secrets.swift */; };
-		580E7D8A23E4D43B00284966 /* ImageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 580E7D8923E4D43B00284966 /* ImageKit */; };
 		580E7D8C23E4D67900284966 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580E7D8B23E4D67900284966 /* WeatherModel.swift */; };
 		580E7D9223E4DD7D00284966 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580E7D9123E4DD7D00284966 /* WeatherCell.swift */; };
 		580E7D9423E4DD9100284966 /* WeatherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 580E7D9323E4DD9100284966 /* WeatherCell.xib */; };
+		587FFD8B23E8B17000F24821 /* ImageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 587FFD8A23E8B17000F24821 /* ImageKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				580E7D8A23E4D43B00284966 /* ImageKit in Frameworks */,
+				587FFD8B23E8B17000F24821 /* ImageKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,7 +129,7 @@
 			);
 			name = WeatherApp;
 			packageProductDependencies = (
-				580E7D8923E4D43B00284966 /* ImageKit */,
+				587FFD8A23E8B17000F24821 /* ImageKit */,
 			);
 			productName = WeatherApp;
 			productReference = 548CE04E234D33B500B5177D /* WeatherApp.app */;
@@ -160,7 +160,7 @@
 			);
 			mainGroup = 548CE045234D33B500B5177D;
 			packageReferences = (
-				580E7D8823E4D43B00284966 /* XCRemoteSwiftPackageReference "ImageKit" */,
+				587FFD8923E8B17000F24821 /* XCRemoteSwiftPackageReference "ImageKit" */,
 			);
 			productRefGroup = 548CE04F234D33B500B5177D /* Products */;
 			projectDirPath = "";
@@ -390,7 +390,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		580E7D8823E4D43B00284966 /* XCRemoteSwiftPackageReference "ImageKit" */ = {
+		587FFD8923E8B17000F24821 /* XCRemoteSwiftPackageReference "ImageKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/alexpaul/ImageKit";
 			requirement = {
@@ -401,9 +401,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		580E7D8923E4D43B00284966 /* ImageKit */ = {
+		587FFD8A23E8B17000F24821 /* ImageKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 580E7D8823E4D43B00284966 /* XCRemoteSwiftPackageReference "ImageKit" */;
+			package = 587FFD8923E8B17000F24821 /* XCRemoteSwiftPackageReference "ImageKit" */;
 			productName = ImageKit;
 		};
 /* End XCSwiftPackageProductDependency section */

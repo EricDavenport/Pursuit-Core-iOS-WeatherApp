@@ -15,17 +15,9 @@ class WeatherCell: UICollectionViewCell {
   
   @IBOutlet weak var imageView: UIImageView!
   
-  func configureCell(with weather: Daily) {
-    imageView.getImage(with: weather.icon) { (result) in
-      DispatchQueue.main.async {
-        switch result {
-        case .failure:
-          self.imageView.image = UIImage(named: "wind")
-        case .success(let image):
-          self.imageView.image = image
-        }
-      }
-    }
+  func configureCell(with weather: WeatherData) {
+    imageView.image = UIImage(named: weather.icon)
+    summaryLabel.text = weather.summary
   }
   
 }

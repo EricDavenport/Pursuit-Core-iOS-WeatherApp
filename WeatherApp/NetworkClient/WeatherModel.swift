@@ -35,9 +35,9 @@ struct Weather : Codable {
 //}
 
 struct Daily : Codable {
-  let summary : String
-  let icon : String
-  //let data : WeatherData
+  let summary : String?
+  let icon : String?
+  let data : [WeatherData]
 }
 
 struct WeatherData : Codable {
@@ -50,4 +50,5 @@ struct WeatherData : Codable {
   let temperatureLow : Double
   let temperatureHigh : Double
   let visibility : Int
+  let icon: String
 }

@@ -22,7 +22,7 @@ class MainView: UIView {
   public lazy var collectionView : UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .horizontal
-    layout.itemSize = CGSize(width: 45, height: 45)
+    layout.itemSize = CGSize(width: 450, height: 450)
     let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .orange
     return collectionView
@@ -33,6 +33,12 @@ class MainView: UIView {
     searchBar.backgroundColor = .brown
     searchBar.placeholder = "enter zipcode"
     return searchBar
+  }()
+  
+  public lazy var infoLabel : UILabel = {
+    let label = UILabel()
+    label.text = "description"
+    return label
   }()
 
   override init(frame: CGRect) {
@@ -49,6 +55,7 @@ class MainView: UIView {
     nameLabelSetUp()
     collectionViewSetup()
     zipCodeSetup()
+    descriptionLabelSetup()
   }
 
   private func nameLabelSetUp() {
@@ -73,12 +80,12 @@ class MainView: UIView {
       collectionView.topAnchor.constraint(equalTo: cityNameLabel.bottomAnchor, constant: 10),
       collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
       collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-      collectionView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.25)
+      collectionView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.45)
     ])
     
   }
   
-  public func zipCodeSetup() {
+  private func zipCodeSetup() {
     addSubview(zipCodeSearchBar)
     
     zipCodeSearchBar.translatesAutoresizingMaskIntoConstraints = false
@@ -90,5 +97,15 @@ class MainView: UIView {
     ])
   }
 
+  private func descriptionLabelSetup() {
+    addSubview(infoLabel)
+    infoLabel.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      infoLabel.topAnchor.constraint(equalTo: zipCodeSearchBar.bottomAnchor, constant: 20),
+      infoLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+      infoLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+      
+    ])
+  }
 
 }

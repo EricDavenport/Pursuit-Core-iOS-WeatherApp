@@ -9,5 +9,7 @@
 import Foundation
 
 struct SecretKey {
-  static let key = "97a0e6f62487cd98ab7280505d8c0156"
+  static let weatherKey = "97a0e6f62487cd98ab7280505d8c0156"
+  static let photoKey = "14991210-918db4125ab0714d4ed0ef0d9"
+
 }

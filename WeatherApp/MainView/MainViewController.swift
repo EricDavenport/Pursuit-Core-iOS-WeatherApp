@@ -27,6 +27,7 @@ class MainViewController: UIViewController {
     didSet {
       DispatchQueue.main.async {
         self.mainView.collectionView.reloadData()
+        self.mainView.cityNameLabel.text = self.name
       }
     }
   }
@@ -56,6 +57,7 @@ class MainViewController: UIViewController {
         self.latitude = lat
         self.longitiude = long
         self.name = name
+
       }
     }
     
@@ -86,12 +88,27 @@ extension MainViewController : UICollectionViewDataSource {
     cell.backgroundColor = .white
     
     cell.configureCell(with: weather)
-//    cell.cityNameLabel.text = name
+    cell.cityNameLabel.text = name
     
     
     return cell
   }
-  
+}
+
+extension MainViewController : UICollectionViewDelegateFlowLayout {
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let daily = weathers[indexPath.row]
+    let storyboard = UIStoryboard(name: "DetailView", bundle: nil)
+    guard let detailVc = storyboard.instantiateViewController(identifier: "DetailViewController") as? DetailViewController else {
+      fatalError("failed to downcast to DetailViewController")
+    }
+    detailVc.name = name
+    print(name)
+    detailVc.weather = daily
+    print(daily.icon)
+    
+    navigationController?.pushViewController(detailVc, animated: true)
+  }
 }
 
 extension MainViewController : UISearchBarDelegate {

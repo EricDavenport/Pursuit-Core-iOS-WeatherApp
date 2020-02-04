@@ -22,7 +22,7 @@ class MainView: UIView {
   public lazy var collectionView : UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .horizontal
-    layout.itemSize = CGSize(width: bounds.size.width - 20, height: 350)
+    layout.itemSize = CGSize(width: bounds.size.width - 20, height: 450)
     layout.minimumLineSpacing = 20
     let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .black
@@ -81,7 +81,7 @@ class MainView: UIView {
       collectionView.topAnchor.constraint(equalTo: cityNameLabel.bottomAnchor, constant: 10),
       collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
       collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-      collectionView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.45)
+      collectionView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.65)
     ])
     
   }

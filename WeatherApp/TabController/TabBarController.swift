@@ -21,6 +21,9 @@ class TabBarController: UITabBarController {
     viewController.tabBarItem = UITabBarItem(title: "Favs", image: UIImage(systemName: "star"), selectedImage: UIImage(systemName: "star.fill"))
     return viewController
   }()
+  
+
+
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -41,12 +41,12 @@ struct Daily : Codable {
 }
 
 struct WeatherData : Codable {
-  let time : Int
+  let time : Int?
   let summary : String
-  let sunriseTime : Int
-  let sunsetTime : Int
+  let sunriseTime : Int?
+  let sunsetTime : Int?
   let moonPhase : Double
-  let precipType : String
+  let precipType : String?
   let temperatureLow : Double
   let temperatureHigh : Double
   let visibility : Int?

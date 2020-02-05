@@ -8,12 +8,14 @@
 
 import UIKit
 import ImageKit
+import DataPersistence
 
 class DetailViewController: UIViewController {
   
   var weather : WeatherData?
   var name = ""
   var photo : PhotoInfo?
+  let dataPersistence = DataPersistence<String>(filename: "favePhoto")
   
   @IBOutlet weak var cityNameLabel: UILabel!
   @IBOutlet weak var temperatureLabel: UILabel!
@@ -27,17 +29,32 @@ class DetailViewController: UIViewController {
   @IBOutlet weak var windspeedLabel: UILabel!
   @IBOutlet weak var precipitationLabel: UILabel!
   
+  @IBOutlet weak var saveButton: UIBarButtonItem!
   
   override func viewDidLoad() {
-        super.viewDidLoad()
-      view.backgroundColor = .red
+    super.viewDidLoad()
+    view.backgroundColor = .red
     
     updateUI()
+  }
+  
+  @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+    saveButton.image = UIImage(systemName: "star.fill")
+    do {
+      try dataPersistence.createItem(photo!.largeImageURL)
+      showAlert(title: "Success", message: "Image succesfully saved") { (action) in
+        UIView.animate(withDuration: 2, delay: 0, options: [.autoreverse], animations: {
+          self.imageView.layer.cornerRadius = self.imageView.bounds.size.width / 2.0
+        }, completion: nil)
+      }
+    } catch {
+      print("Unable to save image")
     }
-    
+  }
+ 
   
   func updateUI() {
-
+    
     cityNameLabel.text = name
     forecastLabel.text = weather?.icon
     highLabel.text = "High: \(weather?.temperatureHigh)"
@@ -46,14 +63,14 @@ class DetailViewController: UIViewController {
     
     imageView.getImage(with: photo!.largeImageURL) { [weak self] (result) in
       DispatchQueue.main.async {
-      switch result {
-      case .failure(let appError):
-        print("App Error: \(appError)")
-      case .success(let image):
-        self?.imageView.image = image
+        switch result {
+        case .failure(let appError):
+          print("App Error: \(appError)")
+        case .success(let image):
+          self?.imageView.image = image
         }
       }
     }
     
-}
+  }
 }

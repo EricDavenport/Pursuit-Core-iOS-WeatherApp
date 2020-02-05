@@ -28,6 +28,7 @@
 		58371E3723EA01A300311F94 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58371E3623EA01A300311F94 /* PhotoModel.swift */; };
 		587FFD8B23E8B17000F24821 /* ImageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 587FFD8A23E8B17000F24821 /* ImageKit */; };
 		58D3477B23EA08BC0029C191 /* DetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58D3477A23EA08BC0029C191 /* DetailView.storyboard */; };
+		58D3477D23EA602A0029C191 /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D3477C23EA602A0029C191 /* UIViewController+Alerts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		58371E3323EA003900311F94 /* PhotoAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAPIClient.swift; sourceTree = "<group>"; };
 		58371E3623EA01A300311F94 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		58D3477A23EA08BC0029C191 /* DetailView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailView.storyboard; sourceTree = "<group>"; };
+		58D3477C23EA602A0029C191 /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				580E7D7823E4BFDE00284966 /* TabBarController.swift */,
+				58D3477C23EA602A0029C191 /* UIViewController+Alerts.swift */,
 			);
 			path = TabController;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				580E7D7C23E4C1AD00284966 /* MainViewController.swift in Sources */,
 				580E7D7E23E4C1D100284966 /* FavsViewController.swift in Sources */,
 				580E7D9223E4DD7D00284966 /* WeatherCell.swift in Sources */,
+				58D3477D23EA602A0029C191 /* UIViewController+Alerts.swift in Sources */,
 				580E7D7923E4BFDE00284966 /* TabBarController.swift in Sources */,
 				548CE054234D33B500B5177D /* SceneDelegate.swift in Sources */,
 				580E7D8C23E4D67900284966 /* WeatherModel.swift in Sources */,

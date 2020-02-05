@@ -16,22 +16,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p6M-cg-RbL">
-                                <rect key="frame" x="0.0" y="112" width="414" height="433.5"/>
+                                <rect key="frame" x="0.0" y="156" width="414" height="389.5"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CityName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5DN-ES-kTU">
-                                <rect key="frame" x="100" y="52" width="214" height="20.5"/>
+                                <rect key="frame" x="100" y="96" width="214" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vi1-YW-jAH">
-                                <rect key="frame" x="296" y="80.5" width="98" height="20.5"/>
+                                <rect key="frame" x="296" y="124.5" width="98" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forecast" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mmb-Yi-Gzy">
-                                <rect key="frame" x="20" y="80.5" width="66.5" height="20.5"/>
+                                <rect key="frame" x="20" y="124.5" width="66.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -113,6 +113,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SNY-SQ-qph"/>
                     </view>
+                    <navigationItem key="navigationItem" id="RHO-ec-GZc">
+                        <barButtonItem key="rightBarButtonItem" title="save" image="star" catalog="system" id="Lnc-Hy-DFw">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="sHa-J3-YBw" id="GYb-mD-8Tg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="cityNameLabel" destination="5DN-ES-kTU" id="Uen-Zc-QmQ"/>
                         <outlet property="forecastLabel" destination="Mmb-Yi-Gzy" id="jbf-L0-bty"/>
@@ -120,6 +127,7 @@
                         <outlet property="imageView" destination="p6M-cg-RbL" id="V1j-MQ-58D"/>
                         <outlet property="lowLabel" destination="Un1-S7-me0" id="DIE-eq-vn3"/>
                         <outlet property="precipitationLabel" destination="RGR-8K-APv" id="lGI-1y-kP5"/>
+                        <outlet property="saveButton" destination="Lnc-Hy-DFw" id="zNL-Op-suw"/>
                         <outlet property="summaryLabel" destination="WQW-Vm-ySm" id="TGi-1f-j7j"/>
                         <outlet property="sunriseLabel" destination="hCr-3D-Osv" id="4q4-2d-ldx"/>
                         <outlet property="sunsetLabel" destination="yXd-bA-zhX" id="ite-QQ-gqD"/>
@@ -129,7 +137,28 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ym-lO-yb9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1055.072463768116" y="94.419642857142847"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xN3-Xf-MXQ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PgU-xz-K2X" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ASY-Qk-skr">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="sHa-J3-YBw" kind="relationship" relationship="rootViewController" id="bXX-k9-RUA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IHC-7N-sQ3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="144.92753623188406" y="94.419642857142847"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="star" catalog="system" width="64" height="58"/>
+    </resources>
 </document>

@@ -30,7 +30,7 @@ class TabBarController: UITabBarController {
       
       view.backgroundColor = .green
     
-      viewControllers = [mainViewController, favsViewController]
+      viewControllers = [UINavigationController(rootViewController: mainViewController), favsViewController]
     }
     
   

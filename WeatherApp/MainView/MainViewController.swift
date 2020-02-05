@@ -32,6 +32,8 @@ class MainViewController: UIViewController {
     }
   }
   
+  var photos = [PhotoInfo]()
+  
   override func loadView() {
     view = mainView
   }
@@ -39,15 +41,16 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
       mainView.collectionView.dataSource = self
+      mainView.collectionView.delegate = self
       mainView.zipCodeSearchBar.delegate = self
       view.backgroundColor = .systemPink
       
       mainView.collectionView.register(UINib(nibName: "WeatherCell", bundle: nil), forCellWithReuseIdentifier: "weatherCell")
-      weatherSearch(zipCode:"")
+      weatherSearch(zipCode:"11003")
       
     }
   
-  func weatherSearch(zipCode: String = "11003") {
+  func weatherSearch(zipCode: String) {
     
     ZipCodeHelper.getLatLong(fromZipCode: zipCode) { (result) in
       switch result {
@@ -61,6 +64,17 @@ class MainViewController: UIViewController {
       }
     }
     
+    PhotoAPIClient.getPhotos(for: name) { (result) in
+      switch result {
+      case .failure(let appError):
+        print("appError: \(appError)")
+      case .success(let photos):
+        self.photos = photos
+      }
+    }
+    
+    
+    
     WeatherAPIClient.getWeather(with: latitude, long: longitiude) { (result) in
       switch result {
       case .failure(let appError):
@@ -69,6 +83,7 @@ class MainViewController: UIViewController {
         self.weathers = daily
       }
     }
+    
   }
 
 
@@ -90,22 +105,28 @@ extension MainViewController : UICollectionViewDataSource {
     cell.configureCell(with: weather)
     cell.cityNameLabel.text = name
     
-    
     return cell
   }
 }
 
 extension MainViewController : UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
     let daily = weathers[indexPath.row]
+    
     let storyboard = UIStoryboard(name: "DetailView", bundle: nil)
     guard let detailVc = storyboard.instantiateViewController(identifier: "DetailViewController") as? DetailViewController else {
       fatalError("failed to downcast to DetailViewController")
     }
+    
     detailVc.name = name
     print(name)
     detailVc.weather = daily
     print(daily.icon)
+    detailVc.photo = photos[indexPath.row]
+    
+    
+//    navigationController?.present(detailVc, animated: true, completion: nil)
     
     navigationController?.pushViewController(detailVc, animated: true)
   }
@@ -123,3 +144,5 @@ extension MainViewController : UISearchBarDelegate {
     
   }
 }
+
+

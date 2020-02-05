@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import ImageKit
 
 class DetailViewController: UIViewController {
   
   var weather : WeatherData?
-  var name = String()
+  var name = ""
+  var photo : PhotoInfo?
   
   @IBOutlet weak var cityNameLabel: UILabel!
   @IBOutlet weak var temperatureLabel: UILabel!
@@ -35,30 +37,23 @@ class DetailViewController: UIViewController {
     
   
   func updateUI() {
-    PhotoAPIClient.getPhotos(for: name) { [weak self] (result) in
+
+    cityNameLabel.text = name
+    forecastLabel.text = weather?.icon
+    highLabel.text = "High: \(weather?.temperatureHigh)"
+    lowLabel.text = "Low: \(weather?.temperatureLow)"
+    summaryLabel.text = weather?.summary
+    
+    imageView.getImage(with: photo!.largeImageURL) { [weak self] (result) in
+      DispatchQueue.main.async {
       switch result {
       case .failure(let appError):
-        print("Error: \(appError)")
-      case .success(let photos):
-        self?.imageView.getImage(with: photos.first!.largeImageURL) { (result) in
-          switch result {
-          case .failure:
-            self?.imageView.image = UIImage(systemName: "photo")
-          case .success(let image):
-            self?.imageView.image = image
+        print("App Error: \(appError)")
+      case .success(let image):
+        self?.imageView.image = image
         }
+      }
     }
-    }
-  }
+    
 }
 }
-
-
-
-
-
-// A Label naming the city and the forecast date
-// A random image of the city
-// A Label with a longer description of the weather
-// Additional information about the weather including the high, low, sunrise, sunset, windspeed and precipitation
-// Selecting the "Save" bar button item should save the image to your favorites and present an alert view informing the user.

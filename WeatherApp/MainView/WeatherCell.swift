@@ -24,14 +24,17 @@ class WeatherCell: UICollectionViewCell {
   
   func configureCell(with weather: WeatherData) {
     let dateFormatter = DateFormatter()
-    let timeInterval : TimeInterval = Double(weather.sunsetTime!)
-    let timeInterval2 : TimeInterval = Double(weather.sunriseTime!)
-    let date = Date(timeIntervalSince1970: timeInterval)
-    let date2 = Date(timeIntervalSince1970: timeInterval2)
+    let sunsetInterval : TimeInterval = Double(weather.sunsetTime!)
+    let sunriseInterval : TimeInterval = Double(weather.sunriseTime!)
+    let currentInterval : TimeInterval = Double(weather.time!)
+    let sunsetDate = Date(timeIntervalSince1970: sunsetInterval)
+    let sunriseDate = Date(timeIntervalSince1970: sunriseInterval)
+    let currentDate = Date(timeIntervalSince1970: currentInterval)
     dateFormatter.dateFormat = "H:mm"
-    let sunsetTime = dateFormatter.string(from: date)
-    let sunriseTime = dateFormatter.string(from: date2)
-   // let sunriseTime = DateFormatter().date(from: String(weather.sunriseTime!))
+    let sunsetTime = dateFormatter.string(from: sunsetDate)
+    let sunriseTime = dateFormatter.string(from: sunriseDate)
+    let currentTime = dateFormatter.string(from: currentDate)
+    
     
     imageView.image = UIImage(named: weather.icon)
     //summaryLabel.text = weather.summary
@@ -41,7 +44,7 @@ class WeatherCell: UICollectionViewCell {
     sunriseLabel.text = "Sunset: \(sunsetTime)"
     sunsetLabel.text = "Sunset: \(String(describing: sunriseTime))"
     moonPhaseLabel.text = "MoonPhase: \(weather.moonPhase)"
-    timeLabel.text = "Time: \(String(describing: weather.time))"
+    timeLabel.text = "Time: \(currentTime)"
     percipTypeLabel.text = weather.precipType
     
     

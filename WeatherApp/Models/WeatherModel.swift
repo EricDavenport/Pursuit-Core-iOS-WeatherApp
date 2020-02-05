@@ -49,6 +49,6 @@ struct WeatherData : Codable {
   let precipType : String?
   let temperatureLow : Double
   let temperatureHigh : Double
-  let visibility : Int?
+  //let visibility : Int?
   let icon: String
 }

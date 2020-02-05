@@ -15,7 +15,7 @@ class DetailViewController: UIViewController {
   var weather : WeatherData?
   var name = ""
   var photo : PhotoInfo?
-  let dataPersistence = DataPersistence<String>(filename: "favePhoto")
+  let dataPersistence = DataPersistence<PhotoInfo>(filename: "favePhoto")
   
   @IBOutlet weak var cityNameLabel: UILabel!
   @IBOutlet weak var temperatureLabel: UILabel!
@@ -41,10 +41,10 @@ class DetailViewController: UIViewController {
   @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
     saveButton.image = UIImage(systemName: "star.fill")
     do {
-      try dataPersistence.createItem(photo!.largeImageURL)
+      try dataPersistence.createItem(photo!)
       showAlert(title: "Success", message: "Image succesfully saved") { (action) in
-        UIView.animate(withDuration: 2, delay: 0, options: [.autoreverse], animations: {
-          self.imageView.layer.cornerRadius = self.imageView.bounds.size.width / 2.0
+        UIView.transition(with: self.imageView, duration: 2, options: [.transitionFlipFromRight], animations: {
+          self.imageView.layer.borderWidth = 2
         }, completion: nil)
       }
     } catch {

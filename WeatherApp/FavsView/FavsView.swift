@@ -13,15 +13,14 @@ class FavsView: UIView {
   public lazy var tableView : UITableView = {
     let tableView = UITableView()
     tableView.backgroundColor = .blue
-    
     return tableView
   }()
   
-//  public lazy var imageView : UIImageView = {
-//    let imageView = UIImageView()
-//    imageView.backgroundColor = .white
-//    return imageView
-//  }()
+  public lazy var imageView : UIImageView = {
+    let imageView = UIImageView()
+    imageView.backgroundColor = .white
+    return imageView
+  }()
 
   override init(frame: CGRect) {
     super.init(frame: UIScreen.main.bounds)
@@ -39,7 +38,8 @@ class FavsView: UIView {
   
   private func tableViewSetup() {
     addSubview(tableView)
-    
+    tableView.addSubview(imageView)
+    imageView.widthAnchor.constraint(equalToConstant: bounds.size.width)
     
     tableView.translatesAutoresizingMaskIntoConstraints = false
     

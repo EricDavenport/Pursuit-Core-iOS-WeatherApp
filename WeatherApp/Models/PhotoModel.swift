@@ -12,7 +12,7 @@ struct PhotoObject: Codable {
   let hits: [PhotoInfo]
 }
 
-struct PhotoInfo: Codable {
+struct PhotoInfo: Codable & Equatable {
   let largeImageURL : String
   let likes : Int
   let views : Int

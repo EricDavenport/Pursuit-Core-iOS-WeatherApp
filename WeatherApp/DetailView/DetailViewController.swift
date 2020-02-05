@@ -34,7 +34,6 @@ class DetailViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .red
-    
     updateUI()
   }
   
@@ -42,9 +41,9 @@ class DetailViewController: UIViewController {
     saveButton.image = UIImage(systemName: "star.fill")
     do {
       try dataPersistence.createItem(photo!)
-      showAlert(title: "Success", message: "Image succesfully saved") { (action) in
-        UIView.transition(with: self.imageView, duration: 2, options: [.transitionFlipFromRight], animations: {
-          self.imageView.layer.borderWidth = 2
+      showAlert(title: "Success", message: "Image saved to favorites") { (alert) in
+        UIView.animate(withDuration: 1, delay: 0, options: [.autoreverse], animations: {
+          self.imageView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
         }, completion: nil)
       }
     } catch {

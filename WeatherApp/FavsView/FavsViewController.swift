@@ -52,6 +52,7 @@ extension FavsViewController : UITableViewDataSource , UITableViewDelegate {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "favsCell", for: indexPath)
     let fav = favs[indexPath.row]
+    cell.imageView?.contentMode = .scaleAspectFill
     cell.imageView?.getImage(with: fav.largeImageURL, completion: { [weak self] (result) in
       DispatchQueue.main.async {
         switch result {
@@ -71,6 +72,7 @@ extension FavsViewController : UITableViewDataSource , UITableViewDelegate {
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 350
   }
+  
   
 
 }

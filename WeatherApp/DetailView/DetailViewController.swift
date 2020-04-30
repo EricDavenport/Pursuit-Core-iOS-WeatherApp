@@ -47,7 +47,7 @@ class DetailViewController: UIViewController {
         }, completion: nil)
       }
     } catch {
-      print("Unable to save image")
+      showAlert(title: "Failed", message: "Unable to save image")
     }
   }
  

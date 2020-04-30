@@ -12,7 +12,7 @@ class FavsView: UIView {
   
   public lazy var tableView : UITableView = {
     let tableView = UITableView()
-    tableView.backgroundColor = .blue
+    tableView.backgroundColor = .systemGroupedBackground
     return tableView
   }()
   
@@ -36,18 +36,24 @@ class FavsView: UIView {
     tableViewSetup()
   }
   
+  private func imageViewSetup() {
+    tableView.addSubview(imageView)
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    imageView.widthAnchor.constraint(equalTo: tableView.widthAnchor, multiplier: 0.10)
+    
+  }
+  
+  
   private func tableViewSetup() {
     addSubview(tableView)
-    tableView.addSubview(imageView)
-    imageView.widthAnchor.constraint(equalToConstant: bounds.size.width)
     
     tableView.translatesAutoresizingMaskIntoConstraints = false
     
     NSLayoutConstraint.activate([
-      tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0),
+      tableView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
       tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0),
-      tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-      tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0)
+      tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+      tableView.trailingAnchor.constraint(equalTo: trailingAnchor)
     ])
   }
 

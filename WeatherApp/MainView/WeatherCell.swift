@@ -38,7 +38,7 @@ class WeatherCell: UICollectionViewCell {
     
     imageView.image = UIImage(named: weather.icon)
     //summaryLabel.text = weather.summary
-    cityNameLabel.text = weather.icon.uppercased()
+//    cityNameLabel.text = weather.icon.uppercased()
     highLabel.text = "High: \(weather.temperatureHigh)"
     lowLabel.text = "low: \(weather.temperatureLow)"
     sunriseLabel.text = "Sunset: \(sunsetTime)"

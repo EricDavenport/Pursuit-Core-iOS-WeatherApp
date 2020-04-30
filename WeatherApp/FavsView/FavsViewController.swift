@@ -52,17 +52,17 @@ extension FavsViewController : UITableViewDataSource , UITableViewDelegate {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "favsCell", for: indexPath)
     let fav = favs[indexPath.row]
-    cell.imageView?.contentMode = .scaleAspectFill
-    cell.imageView?.getImage(with: fav.largeImageURL, completion: { [weak self] (result) in
-      DispatchQueue.main.async {
-        switch result {
-        case .failure(let appError):
-          self?.showAlert(title: "Error", message: "issue loading favorites: \(appError)")
-        case .success(let image):
-          cell.imageView?.image = image
-        }
-      }
-    })
+    cell.imageView?.contentMode = .scaleAspectFit
+//    cell.imageView?.getImage(with: fav.largeImageURL, completion: { [weak self] (result) in
+//      DispatchQueue.main.async {
+//        switch result {
+//        case .failure(let appError):
+//          self?.showAlert(title: "Error", message: "issue loading favorites: \(appError)")
+//        case .success(let image):
+//          cell.imageView?.image = image
+//        }
+//      }
+//    })
     return cell
   }
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -43,7 +43,7 @@ class MainViewController: UIViewController {
       mainView.collectionView.dataSource = self
       mainView.collectionView.delegate = self
       mainView.zipCodeSearchBar.delegate = self
-      view.backgroundColor = .systemPink
+      view.backgroundColor = .systemGroupedBackground
       
       mainView.collectionView.register(UINib(nibName: "WeatherCell", bundle: nil), forCellWithReuseIdentifier: "weatherCell")
       weatherSearch(zipCode:"11003")
@@ -69,6 +69,7 @@ class MainViewController: UIViewController {
       case .failure(let appError):
         print("appError: \(appError)")
       case .success(let photos):
+        print("\(photos.count) photos collected")
         self.photos = photos
       }
     }
@@ -103,7 +104,7 @@ extension MainViewController : UICollectionViewDataSource {
     cell.backgroundColor = .white
     
     cell.configureCell(with: weather)
-    cell.cityNameLabel.text = name
+//    cell.cityNameLabel.text = name
     
     return cell
   }
@@ -120,9 +121,7 @@ extension MainViewController : UICollectionViewDelegateFlowLayout {
     }
     
     detailVc.name = name
-    print(name)
     detailVc.weather = daily
-    print(daily.icon)
     detailVc.photo = photos[indexPath.row]
     
     
@@ -141,7 +140,7 @@ extension MainViewController : UISearchBarDelegate {
       return
     }
     weatherSearch(zipCode: searchText)
-    
+    mainView.zipCodeSearchBar.text = ""
   }
 }
 

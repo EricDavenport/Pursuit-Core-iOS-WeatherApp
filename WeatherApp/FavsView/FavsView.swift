@@ -52,8 +52,8 @@ class FavsView: UIView {
     NSLayoutConstraint.activate([
       tableView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
       tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0),
-      tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
-      tableView.trailingAnchor.constraint(equalTo: trailingAnchor)
+      tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
+      tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12)
     ])
   }
 

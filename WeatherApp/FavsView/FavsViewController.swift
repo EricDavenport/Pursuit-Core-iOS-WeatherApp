@@ -34,7 +34,8 @@ class FavsViewController: UIViewController {
       favsView.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "favsCell")
       favsView.tableView.dataSource = self
       favsView.tableView.delegate = self
-      view.backgroundColor = .systemIndigo
+      favsView.tableView.register(FavCell.self, forCellReuseIdentifier: "favsCell")
+      view.backgroundColor = .systemGroupedBackground
     }
     
   func loadFavs() {
@@ -50,21 +51,15 @@ class FavsViewController: UIViewController {
 
 extension FavsViewController : UITableViewDataSource , UITableViewDelegate {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "favsCell", for: indexPath)
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: "favsCell", for: indexPath) as? FavCell else {
+      fatalError("unable to downcast FavCell")
+    }
     let fav = favs[indexPath.row]
-    cell.imageView?.contentMode = .scaleAspectFit
-//    cell.imageView?.getImage(with: fav.largeImageURL, completion: { [weak self] (result) in
-//      DispatchQueue.main.async {
-//        switch result {
-//        case .failure(let appError):
-//          self?.showAlert(title: "Error", message: "issue loading favorites: \(appError)")
-//        case .success(let image):
-//          cell.imageView?.image = image
-//        }
-//      }
-//    })
+    cell.configureCell(photo: fav)
+
     return cell
   }
+  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return favs.count
   }

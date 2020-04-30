@@ -47,7 +47,7 @@ class MainViewController: UIViewController {
       
       mainView.collectionView.register(UINib(nibName: "WeatherCell", bundle: nil), forCellWithReuseIdentifier: "weatherCell")
       weatherSearch(zipCode:"11003")
-      
+      updateDescription()
     }
   
   func weatherSearch(zipCode: String) {
@@ -86,6 +86,24 @@ class MainViewController: UIViewController {
     }
     
   }
+  
+  private func updateDescription() {
+    mainView.infoLabel.text = "these new owrlds owf inud jdjd kjzkj nposnk jpi j sk sklnn kj lj ljls  j lwsj  ljlsk lsj llmeln' ;pao  m ;o;awsl iil s l sli lk l lishut ghe fuck uo you bstupdi slittle bictch before i truly decide to fuck you up on some othet shit little buttch a=fhpofj dass nigga hoe ass bitch "
+  }
+  
+  
+  func snapToNearestCell(_ collectionView: UICollectionView) {
+    for each in 0..<collectionView.numberOfItems(inSection: 0) {
+      let itemWithSpaceWidth = collectionView.collectionViewLayout.collectionViewContentSize.width
+      
+      if collectionView.contentOffset.x <= CGFloat(each) * itemWithSpaceWidth / 2 {
+        let indexPath = IndexPath(item: each, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        break
+      }
+    }
+    
+  }
 
 
 }
@@ -108,6 +126,9 @@ extension MainViewController : UICollectionViewDataSource {
     
     return cell
   }
+  func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//    snapToNearestCell(scrollView)
+  }
 }
 
 extension MainViewController : UICollectionViewDelegateFlowLayout {
@@ -128,7 +149,13 @@ extension MainViewController : UICollectionViewDelegateFlowLayout {
 //    navigationController?.present(detailVc, animated: true, completion: nil)
     
     navigationController?.pushViewController(detailVc, animated: true)
+    mainView.infoLabel.text = daily.summary
   }
+  
+  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+//    let daily = weathers[indexPath.row]
+  }
+  
 }
 
 extension MainViewController : UISearchBarDelegate {
@@ -143,5 +170,7 @@ extension MainViewController : UISearchBarDelegate {
     mainView.zipCodeSearchBar.text = ""
   }
 }
+
+
 
 
